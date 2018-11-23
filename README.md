@@ -19,9 +19,10 @@ Yarn
 
 ## Usage
 
+### Simple classifier (built on molir)
 ```js
 const Eduir = require('eduir');
-const classifier = new Eduir(intents, score).classifier;
+const classifier = new Eduir(intents, score).simpleClassifier;
 classifier.classify('Test utterance')
   .then( (result) => {
     console.log(result);

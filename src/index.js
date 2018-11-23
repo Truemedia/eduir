@@ -1,20 +1,22 @@
-const IntentClassifier = require('molir/molir');
+const SimpleClassifier = require('molir/molir');
 
 module.exports = class Eduir
 {
   constructor(intents, score)
   {
     this.score = score;
+    this.intents = intents;
+  }
+
+  get simpleClassifier()
+  {
     // Dirty hack to unfix spelling of utterance
-    this.intents = intents.map( (intent) => {
+    let intents = this.intents.map( (intent) => {
       intent.utterences = intent.utterances;
       delete intent.utterances;
       return intent;
     });
-  }
 
-  get classifier()
-  {
-    return new IntentClassifier(this.intents, this.score);
+    return new SimpleClassifier(intents, this.score);
   }
 };
